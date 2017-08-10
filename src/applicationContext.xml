@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd">
+
+	
+	<bean id="student" class="com.softeem.DTO.Student">
+		<property name="sid" value="1"></property>
+		<property name="sname" value="张三"></property>
+		<property name="age">
+			<value>13</value>
+		</property>
+		<property name="birth" >
+		<bean  class="java.util.Date"></bean>
+		</property>
+	</bean>
+	
+	<bean id="stuDao_sql" class="com.softeem.DAO.impl.StudentDAOImplBySql"></bean>
+	<bean id="stuDao_xml" class="com.softeem.DAO.impl.StudentDAOImplByXml"></bean>
+	<bean id="stuService" class="com.softeem.service.impl.StudentServiceImpl">
+<!--		<constructor-arg>-->
+<!--			<bean class="com.softeem.DAO.impl.StudentDAOImplBySql"/>-->
+<!--		</constructor-arg>-->
+<!--	<constructor-arg type="com.softeem.DAO.IStudentDAO" ref="stuDao_xml"/>-->
+
+	<constructor-arg index="0" ref="stuDao_xml"/>
+
+	</bean>
+</beans>
